@@ -5,11 +5,13 @@ namespace BlazorBootstrap.Modal.Services
 {
     public interface IModal
     {
+        ModalConfiguration Configuration { get; set; }
+
         event Action<string, RenderFragment> OnShow;
 
         event Action OnClose;
 
-        void Show<T>(string title, params ModalParameter[] parameters)
+        void Show<T>(string title, ModalConfiguration configuration, params ModalParameter[] parameters)
             where T : ComponentBase;
 
         void Close();

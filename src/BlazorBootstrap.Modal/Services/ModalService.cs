@@ -6,11 +6,13 @@ namespace BlazorBootstrap.Modal.Services
 {
     public class ModalService : IModal
     {
+        public ModalConfiguration Configuration { get; set; }
+
         public event Action<string, RenderFragment> OnShow;
 
         public event Action OnClose;
 
-        public void Show<T>(string title, params ModalParameter[] parameters)
+        public void Show<T>(string title, ModalConfiguration configuration, params ModalParameter[] parameters)
             where T : ComponentBase
         {
             var content = new RenderFragment(x =>

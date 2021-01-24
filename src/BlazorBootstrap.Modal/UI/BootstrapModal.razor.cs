@@ -32,6 +32,7 @@ namespace BlazorBootstrap.Modal.UI
         {
             Title = title;
             IsVisible = true;
+            // Se puede cambiar esto a un JS
             Content = content;
 
             StateHasChanged();
