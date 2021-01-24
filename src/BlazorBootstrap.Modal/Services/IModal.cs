@@ -5,6 +5,7 @@ namespace BlazorBootstrap.Modal.Services
 {
     public interface IModal
     {
+        string Id { get; set; }
         ModalConfiguration Configuration { get; set; }
 
         event Action<string, RenderFragment> OnShow;

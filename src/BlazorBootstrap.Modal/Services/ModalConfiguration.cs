@@ -10,8 +10,12 @@ namespace BlazorBootstrap.Modal.Services
         public bool ShowFooter { get; set; }
         public string Size { get; set; }
         public bool VerticallyCentered { get; set; }
-        public string Backdrop { get; set; }
+        public bool StaticBackdrop { get; set; } // data-backdrop="static" data-keyboard="false"
         public bool Keyboard { get; set; }
+        public bool FadeAnimation { get; set; }
+        public bool ScrollableBodyContent { get; set; } // .modal-dialog-scrollable
+
+        // @(IsVisible ? "d-block show": "d-none")
 
         public ModalConfiguration()
         {
@@ -19,6 +23,9 @@ namespace BlazorBootstrap.Modal.Services
             this.ShowFooter = true;
             this.VerticallyCentered = false;
             this.Size = ModalSize.Default;
+            this.StaticBackdrop = false;
+            this.ScrollableBodyContent = false;
+            this.FadeAnimation = true;
         }
     }
 

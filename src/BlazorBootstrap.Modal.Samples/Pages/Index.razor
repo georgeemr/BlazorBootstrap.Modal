@@ -3,5 +3,5 @@
 
 <h1>Blazor Bootstrap modal samples</h1>
 
-<button class="btn btn-info" @onclick="@(() => Modal.Show<SimpleModal>("Simple modal", ModalParameter.Get("SampleParameter", "This is a parameter")))">Simple modal</button>
-<button class="btn btn-info" @onclick="@(() => Modal.Show<FormModal>("Login modal"))">Form modal</button>
+<button class="btn btn-info" @onclick="@(() => Modal.Show<SimpleModal>("Simple modal", new ModalConfiguration() { ShowHeader = false }, ModalParameter.Get("SampleParameter", "This is a parameter")))">Simple modal</button>
+<button class="btn btn-info" @onclick="@(() => Modal.Show<FormModal>("Login modal", new ModalConfiguration() { ShowHeader = true }))">Form modal</button>

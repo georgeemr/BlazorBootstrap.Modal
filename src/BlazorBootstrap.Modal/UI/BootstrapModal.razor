@@ -2,10 +2,10 @@
 
 <div class="modal-backdrop fade @(IsVisible ? "d-block show": "d-none")" @onclick="@CloseModal"></div>
 
-<div class="modal fade @(IsVisible ? "d-block show": "d-none")" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog @(ModalService.Configuration.Size)" role="document">
+<div id="modal-@(ModalService?.Id ?? "default")" class="modal @(ModalService?.Configuration?.FadeAnimation == true ? "fade" : "")" data-backdrop="@(ModalService?.Configuration?.StaticBackdrop == true ? "static" : "")" data-keyboard="@(ModalService?.Configuration?.StaticBackdrop == true ? "false" : "")" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog @(ModalService?.Configuration?.Size) @(ModalService?.Configuration?.VerticallyCentered == true ? "modal-dialog-centered" : "") @(ModalService?.Configuration?.Size) @(ModalService?.Configuration?.ScrollableBodyContent == true ? "modal-dialog-scrollable" : "")" role="document">
         <div class="modal-content">
-            @if (ModalService.Configuration.ShowHeader)
+            @if (ModalService?.Configuration == null || ModalService?.Configuration?.ShowHeader == true)
             {
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">@Title</h5>
