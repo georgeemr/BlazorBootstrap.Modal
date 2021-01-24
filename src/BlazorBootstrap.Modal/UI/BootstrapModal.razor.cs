@@ -1,11 +1,15 @@
 ﻿using BlazorBootstrap.Modal.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
+using System.Threading.Tasks;
 
 namespace BlazorBootstrap.Modal.UI
 {
     public class BootstrapModalBase : ComponentBase, IDisposable
     {
+        [Inject] Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
+
         [Inject] public IModal ModalService { get; set; }
 
         public string Title { get; set; }
@@ -28,18 +32,18 @@ namespace BlazorBootstrap.Modal.UI
             StateHasChanged();
         }
 
-        protected void ShowModal(string title, RenderFragment content)
+        protected async void ShowModal(string title, RenderFragment content)
         {
             Title = title;
             IsVisible = true;
-            // Se puede cambiar esto a un JS
             Content = content;
-
+            await JSRuntime.InvokeVoidAsync("ShowTheModal", this.ModalService.Id);
             StateHasChanged();
         }
 
-        protected void CloseModal()
+        protected async void CloseModal()
         {
+            await JSRuntime.InvokeVoidAsync("HideTheModal", this.ModalService.Id);
             Title = string.Empty;
             IsVisible = false;
             Content = null;
