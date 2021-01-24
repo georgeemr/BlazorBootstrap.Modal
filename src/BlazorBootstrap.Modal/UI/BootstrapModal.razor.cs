@@ -37,13 +37,13 @@ namespace BlazorBootstrap.Modal.UI
             Title = title;
             IsVisible = true;
             Content = content;
-            await JSRuntime.InvokeVoidAsync("ShowTheModal", this.ModalService.Id);
+            await JSRuntime.InvokeVoidAsync("ShowTheModal", $"modal-{this.ModalService.Id}");
             StateHasChanged();
         }
 
         protected async void CloseModal()
         {
-            await JSRuntime.InvokeVoidAsync("HideTheModal", this.ModalService.Id);
+            await JSRuntime.InvokeVoidAsync("HideTheModal", $"modal-{this.ModalService.Id}");
             Title = string.Empty;
             IsVisible = false;
             Content = null;

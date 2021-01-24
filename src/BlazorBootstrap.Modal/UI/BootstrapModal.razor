@@ -1,9 +1,8 @@
 ﻿@inherits BlazorBootstrap.Modal.UI.BootstrapModalBase
+@*<div class="modal-backdrop fade @(IsVisible ? "d-block show": "d-none")" @onclick="@CloseModal"></div>*@
 
-<div class="modal-backdrop fade @(IsVisible ? "d-block show": "d-none")" @onclick="@CloseModal"></div>
-
-<div id="modal-@(ModalService?.Id ?? "default")" class="modal @(ModalService?.Configuration?.FadeAnimation == true ? "fade" : "")" data-backdrop="@(ModalService?.Configuration?.StaticBackdrop == true ? "static" : "")" data-keyboard="@(ModalService?.Configuration?.StaticBackdrop == true ? "false" : "")" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog @(ModalService?.Configuration?.Size) @(ModalService?.Configuration?.VerticallyCentered == true ? "modal-dialog-centered" : "") @(ModalService?.Configuration?.Size) @(ModalService?.Configuration?.ScrollableBodyContent == true ? "modal-dialog-scrollable" : "")" role="document">
+<div id="modal-@(ModalService?.Id ?? "default")" class="modal @(IsVisible ? "show" : "") @(ModalService?.Configuration?.FadeAnimation == true ? "fade" : "") " data-backdrop="@(ModalService?.Configuration?.StaticBackdrop == true ? "static" : "true")" data-keyboard="@(ModalService?.Configuration?.StaticBackdrop == true ? "false" : "true")" tabindex="-1" role="dialog">
+    <div class="modal-dialog @(ModalService?.Configuration?.Size ?? "") @(ModalService?.Configuration?.VerticallyCentered == true ? "modal-dialog-centered" : "") @(ModalService?.Configuration?.ScrollableBodyContent == true ? "modal-dialog-scrollable" : "")" role="document">
         <div class="modal-content">
             @if (ModalService?.Configuration == null || ModalService?.Configuration?.ShowHeader == true)
             {
@@ -17,6 +16,13 @@
             <div class="modal-body">
                 @Content
             </div>
+            @if (ModalService?.Configuration?.ShowFooter == true)
+            {
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
         </div>
     </div>
 </div>

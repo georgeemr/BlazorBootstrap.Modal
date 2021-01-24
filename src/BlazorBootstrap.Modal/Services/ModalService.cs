@@ -6,7 +6,22 @@ namespace BlazorBootstrap.Modal.Services
 {
     public class ModalService : IModal
     {
-        public string Id { get; set; }
+        string _Id;
+        public string Id
+        {
+            get
+            {
+                if (_Id == null)
+                {
+                    this._Id = Guid.NewGuid().ToString();
+                }
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
         public ModalConfiguration Configuration { get; set; }
 
         public event Action<string, RenderFragment> OnShow;
@@ -16,10 +31,6 @@ namespace BlazorBootstrap.Modal.Services
         public void Show<T>(string title, ModalConfiguration configuration, params ModalParameter[] parameters)
             where T : ComponentBase
         {
-            if (this.Id == null)
-            {
-                this.Id = Guid.NewGuid().ToString();
-            }
             this.Configuration = configuration;
             var content = new RenderFragment(x =>
             {

@@ -23,9 +23,9 @@ namespace BlazorBootstrap.Modal.Services
             this.ShowFooter = true;
             this.VerticallyCentered = false;
             this.Size = ModalSize.Default;
-            this.StaticBackdrop = false;
+            this.StaticBackdrop = true;
             this.ScrollableBodyContent = false;
-            this.FadeAnimation = true;
+            this.FadeAnimation = false;
         }
     }
 
@@ -34,6 +34,6 @@ namespace BlazorBootstrap.Modal.Services
         public const string Default = "";
         public const string Small = "modal-sm";
         public const string Large = "modal-lg";
-        public const string FullScreen = "modal-full";
+        public const string FullScreen = "modal-fullscreen";
     }
 }
